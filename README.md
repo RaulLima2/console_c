@@ -1,6 +1,8 @@
 ># Projeto: **Console para Linguagem C**
 >
-><img src="Logo_console.png"  style="flex: 1;" />
+><div class="container" style="width: 88vw; height: 10vh; display: flex; flex-direction: row; justify-content: center; align-items: center;">
+><img src="Logo_console.png"   style="width: 90px; height: 300px;"/>
+></div>
 >
 >## Linguagem utilizada
 >Linguagem C.
@@ -12,9 +14,9 @@
 >
 >## Problematização:
 >
->Parte do inicio de estudos na programação começa se pela Linguagem C, elaborada por >Dennis Richie, em 1972 através do aperfeiçoamento da linguagem B, todavia
->a sua sintaxe não é clara no início, o programador deve ser criativo para resolver os >problemas e a falta de teste rápidos em comparação a linguagens atuais, ou seja, a >falta de um console como tem no python, javascript, php, r ...etc..., tornando díficil o
->inicio nas disciplinas iniciais em programação.
+>Parte do inicio de estudos na programação começa se pela Linguagem C, elaborada por Dennis Richie, em 1972 através do aperfeiçoamento da linguagem B, todavia
+>a sua sintaxe não é clara no início, o programador deve ser criativo para resolver os >problemas e a falta de teste rápidos em comparação a linguagens atuais, ou seja, a 
+>falta de um console como tem no python, javascript, php, r ...etc..., tornando díficil >o inicio nas disciplinas iniciais em programação.
 >
 >
 >
@@ -23,6 +25,8 @@
 >- dificuldade em entendimento da sintaxes das funções
 >___
 >## Objetivo:
+>
+> Criação de um REPL para Linguagem C
 >
 ><ol class="task-list-added">
 ><li class="task-list-item">
@@ -34,7 +38,7 @@
 >     <li class="task-list-item"> :white_circle: implementação dos inputs básicos</li>
 >     <li class="task-list-item"> :white_circle: implementação dos inputs elaborados</li>
 >     <li class="task-list-item"> :white_circle: implementação dos outputs básicos</li>
->     <li class="task-list-item"> :white_circle: implementação dos outputs elaborados</>li>
+>     <li class="task-list-item"> :white_circle: implementação dos outputs elaborados/>
 ></ol>
 ></li>
 >
@@ -43,8 +47,8 @@
 >        <label>BIBLIOTECAS</label>
 >
 ><ol class="task-list-item">
->    <li class="task-list-item"> :white_circle: inclusão das bibliotecas da linguagem c</>li>
->    <li class="task-list-item"> :white_circle:  aplicação da biblioteca >data_structures</li>
+>    <li class="task-list-item"> :white_circle: inclusão das bibliotecas da linguagem c />
+>    <li class="task-list-item"> :white_circle:  aplicação da biblioteca data_structures</li>
 ></ol>
 ></li>
 ><li class="task-list-item">
@@ -59,10 +63,11 @@
 >
 ></ol>
 >
+> ## Material
 >___
 >
 >## Licença
->[]()
+>[](LICENSE)
 >
 >## Desenvolvido
 >[Raul Bruno Santos Lima](https://github.com/RaulLima2)
