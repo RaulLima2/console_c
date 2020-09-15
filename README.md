@@ -67,7 +67,7 @@
 >___
 >
 >## Licença
->[](LICENSE)
+> Esse projeto está sob a licença MIT. Veja o arquivo [License](LICENSE) para mais detalhes.
 >
 >## Desenvolvido
 >[Raul Bruno Santos Lima](https://github.com/RaulLima2)
