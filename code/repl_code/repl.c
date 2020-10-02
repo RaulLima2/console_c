@@ -1,15 +1,15 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include "get_commands/get_commands.h"
+#include "repl.h";
 
-
-
-#include "repl.h"
 
 void shell_start()
 {
     string print_shell[] = {
-        "Console C 2020-0.0.1 version",
-        "lisence MIT"};
+        "Console C 2020-0.1 version",
+        "lisence GNU"};
 
     for(i = 0; i < 2; i++)
     {
@@ -20,49 +20,17 @@ void shell_start()
 
 void repl()
 {
+    int number_include = 0;
+
     bool check = true;
-    char* body_main = (char*)calloc(500, sizeof(char));
-    FILE* file;
-    const char* _command = {"make code/result"};
+
+    shell_start();
 
     while(check)
     {
-        file = fopen("result/01.c", "w+");
+        number_include = push_includes();
+        push_main(number_include);
 
-        if(file == NULL)
-        {
-            printf("Erro: Not Allocated \n");
-            printf("IN FUNCTION: repl() \n");
-        }
-
-        while(getchar() != "\n" && getchar() != EOF)
-        {
-            printf(">> ");
-            fgets(body_main,500,stdin);
-            fprintf(file,"%s",body_main);
-        }
-
-        fprintf(file,"%s","}");
-
-        fclose(file);
-
-
-        system(_command);
-        system("./1");
-        system("rm 1");
-        system("rm 01.c");
-
+        compile();
     }
-
-}
-
-bool input_take(char* str)
-{
-    
-}
-
-
-void help(char* name_function)
-{
-    
 }

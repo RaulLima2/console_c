@@ -9,6 +9,4 @@ void shell_start();
 
 void repl();
 
-void help(char* name_function);
-
 #endif

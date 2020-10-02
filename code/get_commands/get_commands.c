@@ -2,15 +2,24 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include "../commands_repl_c/commands_repl.h"
 #include "get_commands.h"
+#include "interface.h"
 
-//function with get the arguments in main and create file
-int  push_includes(int number_includes, char* arguments_includes)
+
+int  push_includes()
 {
-    FILE *file_main;
     int i = 0;
+    int number_includes = 0;
+    FILE *file_main;
+    char* includes = (char*)calloc(500, sizeof(char));
+    const char* __restrict__ __format = {   
+                                            "void main()\n",
+                                            "{\n"
+                                        };
 
-    file_main = fopen("/result/main.c","a");
+
+    file_main = fopen("/result/main.c","w+");
 
     if(file_main == NULL)
     {
@@ -18,20 +27,61 @@ int  push_includes(int number_includes, char* arguments_includes)
         exit(EXIT_FAILURE);
     }
 
-    for( i = 0; i < number_includes; i++)
+    while(strncmp(includes, "\n", strlen("\n")) != 0)
     {
-        fprintf(file_main,'%s', arguments_includes[i]);
+        bold_cyan();
+        printf(">> ");
+        bold_red();
+        fgets(includes, 500, stdin);
+        check_syntax(includes);
+        fprintf(file_main,"%s",includes);
+        reset();
     }
+
+    fprintf(file_main,"%s", __format);
 
     fclose(file_main);
+
+    return number_includes + 1;
 }
 
-void create_makefile(int number_argument, char* components_in_main)
+void push_main(int number_spaces_includes_fseek)
 {
-    FILE *file_main;
+    char* body_main = (char*)calloc(500, sizeof(char));
+
+    file = fopen("result/01.c", "a");
+
+    if(file == NULL)
+    {
+        printf("Erro: Not Allocated \n");
+        printf("IN FUNCTION: repl() \n");
+    }
+
+    while(strcmp(body_main, "\n", strlen("\n")) != 0)
+    {   
+        bold_cyan();
+        printf(">> ");
+        bold_red();
+        fgets(body_main,500,stdin);
+        check_syntax(body_main);
+        fprintf(file,"%s",body_main);
+        reset();
+    }
+
+    fprintf(file,"%s","}\n");
+
+    fclose(file);
+}
+
+void get_makefile(int number_argument, char* components_in_main)
+{
     int i = 0;
+    FILE *file_main;
     
-    file_main = fopen("/result/Makefile","a");
+    
+    const char* __restrict__ __format = "%s ";
+    
+    file_main = fopen("/result/Makefile","w+");
 
     if(file_main == NULL)
     {
@@ -42,30 +92,20 @@ void create_makefile(int number_argument, char* components_in_main)
 
     for( i = 0; i < number_includes; i++)
     {
-        fprintf( file_main,'%s', components_in_main[i]);
+        fprintf( file_main,"%s", components_in_main[i]);
     }
 
     fclose(file_main)
 }
 
-void compile(string name_make)
+void compile()
 {
-    system("/result make ");
+
+    char* _gcc[] = {"gcc -Wall -std=c99 01.c -o 01"};
+    
+    system(_gcc);
+    system("./01");
+    system("rm 01");
+    system("rm -f 01.c");
 }
 
-string get_answer()
-{
-    string answer;
-    FILE file_result = ('/result/resultado.txt');
-
-    file_result = fopen('/result/resultado.txt',"r");
-
-    if(file_result == NULL)
-    {
-        printf("Error in reading the file");
-    }
-
-    fgets(answer, 255,(FILE)*file_result);
-
-    return answer;
-}
