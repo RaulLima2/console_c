@@ -8,8 +8,8 @@ void help()
     const char* command_help[] =
     {
         "\nq - command with exit the repl\n",
-        "source - command with execute the file.c  - source <arquivos>\n",
         "manual - command with verified manual of function - manual <função>\n",
+        "_source - command with execute the file.c  - source <arquivos>\n",
         "write - command with change or create files in c - write <file>\n"
     };
 
@@ -39,7 +39,7 @@ void source(char* __file_code)
 
 void manual(char* name_function)
 {
-    char* _command = (char*)calloc(strlen(name_function) * 3, sizeof(name_function));
+    char* _command = (char*)calloc(strlen(name_function) * 3, sizeof(char));
 
     strcpy(_command,"man ");
     strcat(_command, name_function);

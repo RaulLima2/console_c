@@ -8,7 +8,7 @@
 #include "get_commands.h"
 
 const int rgb[3] = {1, 91, 107};
-const int  reset[3] = {1, 39, 49};
+const int  reset[3] = {0, 39, 49};
 const char* menu = {"console c >>>"};
 
 void  push_includes()

@@ -11,9 +11,9 @@ void shell_start()
     int i = 0;
     const int rgb[] = {1, 39, 49};
     string print_shell[] = {
-        "Console C 2020-0.2 version\n",
+        "Console C 2020 version 0.3\n",
         "lisence GNU\n",
-        "q | help | write <file.c> | source <files.c>\n"
+        "q | help | write <file.c> | _source <files.c>\n"
         };
 
     for(i = 0; i < 3; i++)
