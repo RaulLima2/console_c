@@ -19,39 +19,41 @@ char* check_syntax(char* string)
     insert(tree_decision, strlen("manual"), command_manual);
     insert(tree_decision, strlen("_source"), command_source);
 
-    string[strlen(string) - 1] = '\0';
 
     if(__analyser_syntax(string, "q"))
     {
+        string[strlen(string)] = '\0';
         node_operation_decision = search(tree_decision, strlen("q"));
         execute_node(node_operation_decision, string);
     }
     else if(__analyser_syntax(string, "help"))
     {
+        string[strlen(string)] = '\0';
         node_operation_decision = search(tree_decision, strlen("help"));
         execute_node(node_operation_decision, string);
         return " \n";
     }
     else if(__analyser_syntax(string, "write"))
     {
+        string[strlen(string)] = '\0';
         node_operation_decision = search(tree_decision, strlen("write"));
         execute_node(node_operation_decision, string);
         return " \n";
     }
     else if(__analyser_syntax(string, "manual"))
     {
+        string[strlen(string) - 1] = '\0';
         node_operation_decision = search(tree_decision, strlen("manual"));
         execute_node(node_operation_decision, string);
         return " \n";
     }
     else if(__analyser_syntax(string, "_source"))
     {
+        string[strlen(string)] = '\0';
         node_operation_decision = search(tree_decision, strlen("_source"));
         execute_node(node_operation_decision, string);
         return " \n";
     }
-
-    string[strlen(string) - 1] = '\n';    
 
     return string;
 }
