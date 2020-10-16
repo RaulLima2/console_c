@@ -1,11 +1,9 @@
 #ifndef GET_COMMANDS_H
 #define GET_COMMANDS_H
 
-int  push_includes(int number_includes, char* arguments_includes);
+void  push_includes();
 
-void push_main(int number_spaces_includes_fseek);
-
-void get_makefile(int number_argument, char* components_in_main);
+void push_main();
 
 void control_exit(char* signal_out);
 

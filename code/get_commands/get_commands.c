@@ -1,109 +1,91 @@
 #include <stdio.h>
 #include <string.h>
+#include <stdbool.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include "../interface/interface.h"
 #include "../commands_repl_c/commands_repl.h"
 #include "get_commands.h"
-#include "interface.h"
 
+const int rgb[3] = {1, 91, 107};
+const int  reset[3] = {1, 39, 49};
+const char* menu = {"console c >>>"};
 
-int  push_includes()
+void  push_includes()
 {
-    int i = 0;
-    int number_includes = 0;
     FILE *file_main;
     char* includes = (char*)calloc(500, sizeof(char));
-    const char* __restrict__ __format = {   
+    const char* __restrict__ __format[] = {
+                                            "#include <stdio.h>\n\n",
                                             "void main()\n",
                                             "{\n"
                                         };
 
 
-    file_main = fopen("/result/main.c","w+");
+    file_main = fopen("01.c","w+");
 
     if(file_main == NULL)
     {
-        printf("Error in open the file")
+        fprintf(stderr, "Error: in function push_includes()\n");
         exit(EXIT_FAILURE);
     }
+
+    fprintf(file_main,"%s", __format[0]);
 
     while(strncmp(includes, "\n", strlen("\n")) != 0)
     {
-        bold_cyan();
-        printf(">> ");
-        bold_red();
+        mix_color(rgb);
+        printf(menu);
+        mix_color(reset);
+
         fgets(includes, 500, stdin);
-        check_syntax(includes);
+
+        strcpy(includes, check_syntax(includes));
+        
         fprintf(file_main,"%s",includes);
-        reset();
     }
 
-    fprintf(file_main,"%s", __format);
+    fprintf(file_main,"%s", __format[1]);
+    fprintf(file_main,"%s", __format[2]);
 
     fclose(file_main);
-
-    return number_includes + 1;
 }
 
-void push_main(int number_spaces_includes_fseek)
+void push_main()
 {
+    FILE* file_body;
     char* body_main = (char*)calloc(500, sizeof(char));
 
-    file = fopen("result/01.c", "a");
+    file_body = fopen("01.c", "a+");
 
-    if(file == NULL)
+    if(file_body == NULL)
     {
         printf("Erro: Not Allocated \n");
-        printf("IN FUNCTION: repl() \n");
+        printf("IN FUNCTION: push_main() \n");
     }
 
-    while(strcmp(body_main, "\n", strlen("\n")) != 0)
-    {   
-        bold_cyan();
-        printf(">> ");
-        bold_red();
+    while(strncmp(body_main, "\n", strlen("\n")) != 0)
+    {
+        mix_color(rgb);
+        printf(menu);
+        mix_color(reset);
+
         fgets(body_main,500,stdin);
-        check_syntax(body_main);
-        fprintf(file,"%s",body_main);
-        reset();
+        strcpy(body_main, check_syntax(body_main));
+        fprintf(file_body,"%s",body_main);
     }
 
-    fprintf(file,"%s","}\n");
+    fprintf(file_body,"%s","}\n");
 
-    fclose(file);
-}
-
-void get_makefile(int number_argument, char* components_in_main)
-{
-    int i = 0;
-    FILE *file_main;
-    
-    
-    const char* __restrict__ __format = "%s ";
-    
-    file_main = fopen("/result/Makefile","w+");
-
-    if(file_main == NULL)
-    {
-        printf("Error in open the file")
-        exit(EXIT_FAILURE);
-    }
-
-
-    for( i = 0; i < number_includes; i++)
-    {
-        fprintf( file_main,"%s", components_in_main[i]);
-    }
-
-    fclose(file_main)
+    fclose(file_body);
 }
 
 void compile()
 {
 
-    char* _gcc[] = {"gcc -Wall -std=c99 01.c -o 01"};
+    char* __command = {"gcc -Wall -std=c99 01.c -o 01"};
     
-    system(_gcc);
+    system(__command);
     system("./01");
     system("rm 01");
     system("rm -f 01.c");
