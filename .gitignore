@@ -3,3 +3,4 @@ builddir/
 
 #Arquivos a sere ignorados
 01.c
+*.o

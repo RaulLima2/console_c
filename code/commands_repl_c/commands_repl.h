@@ -1,20 +1,20 @@
 #ifndef COMMANDS_REPL_H
 #define COMMANDS_REPL_H
 
-typedef struct tree TBS;
+#include <stdbool.h>
 
-TBS* create(int size_string);
+bool __analyser_syntax(char* string, char* analyser);
 
-TBS* insert(TBS* tree, int size_string);
+char* check_syntax(char* string); 
 
-TBS* search(TBS* tree, int size_string);
-
-void check_syntax(char* string);
-
-void command_help(char* name_function);
+void command_help();
 
 void command_source(char* local_file);
 
 void command_exit(char* exit_simbol);
+
+void command_manual(char* manual_of_function);
+
+void command_write(char* path_to_the_source);
 
 #endif

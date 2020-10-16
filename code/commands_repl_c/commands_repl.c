@@ -2,106 +2,73 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
+#include "../interface/interface.h"
 #include "../commands/commands.h"
+#include "../tree_decision/tree_decision.h"
 #include "commands_repl.h"
 
-struct tree 
+bool __analyser_syntax(char* string, char* analyser);
+
+char* check_syntax(char* string) 
 {
-    int info;
-    TBS* left;
-    TBS* right;
+    TBS* node_operation_decision;
+    TBS* tree_decision = create(strlen("q"), command_exit);
 
-    void (*check)(char*);
-};
+    insert(tree_decision, strlen("help"), command_help);
+    insert(tree_decision, strlen("write"), command_write);
+    insert(tree_decision, strlen("manual"), command_manual);
+    insert(tree_decision, strlen("_source"), command_source);
 
-const char* __commands[] = {
-    "q",
-    "source",
-    "help"
-};
+    string[strlen(string) - 1] = '\0';
 
-TBS* create(int size_string)
-{
-    TBS* new = (TBS*)malloc(sizeof(TBS));
-
-    new->info = size_string;
-    new->left = new->right = NULL;
-    return new;
-}
-
-TBS* insert(TBS* tree, int size_string)
-{
-    if(tree == NULL)
+    if(__analyser_syntax(string, "q"))
     {
-        return create(size_string);
+        node_operation_decision = search(tree_decision, strlen("q"));
+        execute_node(node_operation_decision, string);
+    }
+    else if(__analyser_syntax(string, "help"))
+    {
+        node_operation_decision = search(tree_decision, strlen("help"));
+        execute_node(node_operation_decision, string);
+        return " \n";
+    }
+    else if(__analyser_syntax(string, "write"))
+    {
+        node_operation_decision = search(tree_decision, strlen("write"));
+        execute_node(node_operation_decision, string);
+        return " \n";
+    }
+    else if(__analyser_syntax(string, "manual"))
+    {
+        node_operation_decision = search(tree_decision, strlen("manual"));
+        execute_node(node_operation_decision, string);
+        return " \n";
+    }
+    else if(__analyser_syntax(string, "_source"))
+    {
+        node_operation_decision = search(tree_decision, strlen("_source"));
+        execute_node(node_operation_decision, string);
+        return " \n";
     }
 
-    if(size_string > tree->info)
-    {
-        tree->right = insert(tree->right, size_string);
-    }
-    else
-    {
-        tree->left = insert(tree->left, size_string);
-    }
+    string[strlen(string) - 1] = '\n';    
 
-    retun tree;
-}
-
-TBS* search(TBS* tree, int size_string)
-{
-    if(key == size_string)
-    {
-        return tree;
-    }
-    else
-    {
-        search(tree->left, size_string);
-        search(tree->right, size_string);
-    }
-    
-}
-
-void check_syntax(char* string)
-{
-    TBS* tree_decision = create(strlen(__commands[2]));
-    insert(tree_decision, strlen(__commands[0]));
-    insert(tree_decision, strlen(__commands[1]));
-
-    tree_decision->check = command_help;
-    tree_decision->left->check = command_exit;
-    tree_decision->check = command_source;
-
-    TBS* i = search(tree_decision, );
-    
-
+    return string;
 }
 
 void command_help(char* name_function)
 {
-    bool check = true;
-    char* temp = (char*)calloc(100, sizeof(char));
-
-    strncat(temp,"man ", strlen("man "));
-    strncat(temp, name_function + 5, strlen(name_function));
-
-    check = strncmp(__commands[2], name_function, 4);
-
-    if(check)
-    {
-        help(temp);
-    }
+    help();
 }
 
 void command_source(char* local_file)
 {
-    bool check = true;
+    bool check = false;
     char* temp = (char*)calloc(100, sizeof(char));
 
+    check = strncmp("source", local_file, strlen("source"));
 
-    check = strncmp(local_file, __commands[1], strlen(__commands[1]));
-
-    strncpy(temp, local_file + 7, strlen(local_file) - 1);
+    strncpy(temp, local_file + 7, strlen(local_file));
 
     if(check)
     {
@@ -109,15 +76,31 @@ void command_source(char* local_file)
     }
 }
 
-
 void command_exit(char* exit_simbol)
 {
-    bool check = true;
+    quit();
+}
 
-    check = strncmp(exit_simbol, __commands[0], strlen(__commands[0]));
+void command_manual(char* manual_of_function)
+{
+    char* temp = (char*)calloc(100, sizeof(char));
+    strncat(temp, manual_of_function + 6, strlen(manual_of_function));
+    manual(temp);
+}
 
-    if(check)
+void command_write(char* path_to_the_source)
+{
+    char* temp = (char*)calloc(100, sizeof(char));
+    strncpy(temp, path_to_the_source + 5, strlen(path_to_the_source));
+    __write(temp);
+}
+
+bool __analyser_syntax(char* string, char* analyser)
+{
+    if(strncmp(analyser, string, strlen(analyser)) == 0)
     {
-        quit();
+        return true;
     }
+
+    return false;
 }
