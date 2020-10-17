@@ -5,7 +5,7 @@ Linguagem C.
 ___
 
 ## Demonstração
-[![asciicast](https://asciinema.org/a/365876.png)](https://asciinema.org/a/365876)
+[![asciicast](https://asciinema.org/a/365876)](https://asciinema.org/a/365876)
 
 
 ---
