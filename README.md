@@ -3,9 +3,11 @@
 ## Linguagem utilizada
 Linguagem C.
 ___
+
 ## Demonstração
 <link rel="alternate" type="aplication/x-asciicast" href="https://asciinema.org/a/365876">
-___
+
+---
 
 ## Modelo
 layout do projeto desenvolvido no [Figma](https://www.figma.com/file/>QlWwjlH6sTcO8BCUDSxFPS/console_c?node-id=0:1)
