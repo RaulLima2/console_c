@@ -7,7 +7,7 @@ ___
 ## Demonstração
 [![asciicast](https://asciinema.org/a/365876.svg)](https://asciinema.org/a/365876)
 <a href="https://asciinema.org/a/365876" target="_blank"><img src="https://asciinema.org/a/365876.svg" /></a>
-
+<script id="asciicast-365876" src="https://asciinema.org/a/365876.js" async></script>
 
 ---
 
