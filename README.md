@@ -5,7 +5,8 @@ Linguagem C.
 ___
 
 ## Demonstração
-<link rel="alternate" type="aplication/x-asciicast" href="https://asciinema.org/a/365876">
+[![asciicast](https://asciinema.org/a/365876.png)](https://asciinema.org/a/365876)
+
 
 ---
 
