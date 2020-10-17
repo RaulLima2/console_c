@@ -9,9 +9,9 @@ char* check_syntax(char* string);
 
 void command_help();
 
-void command_source(char* local_file);
-
 void command_exit(char* exit_simbol);
+
+void command_source(char* local_file);
 
 void command_manual(char* manual_of_function);
 

@@ -3,7 +3,7 @@
 #include <string.h>
 #include "commands.h"
 
-void help()
+void __help()
 {
     const char* command_help[] =
     {
@@ -19,41 +19,43 @@ void help()
     }
 }
 
-void quit()
+void __quit()
 {
     exit(EXIT_SUCCESS);
 }
 
-void source(char* __file_code)
+void __source(char* __file_code)
 {
-    char* compile = (char*)calloc(100,sizeof(char));
-    const char* flags = {"-o program"};
-    const char* _gcc = {"gcc -Wall -std=c99"};
+    char* compile = (char*)calloc(MAX_ALLOCATE,sizeof(char));
+    const char* flags = {" -o program"};
+    const char* _gcc = {"gcc -Wall -std=c99 "};
 
-    sprintf(compile, "%s %s %s",_gcc, __file_code, flags);
+    strcat(compile, _gcc);
+    strcat(compile, __file_code);
+    strcat(compile, flags);
 
     system(compile);
     system("./program");
     system("rm program");
 }
 
-void manual(char* name_function)
+void __manual(char* name_function)
 {
-    char* _command = (char*)calloc(strlen(name_function) * 3, sizeof(char));
+    char* _command = (char*)calloc(MAX_ALLOCATE, sizeof(char));
 
     strcpy(_command,"man ");
     strcat(_command, name_function);
-
+    
     system(_command);
 }
 
 void __write(char* __path_to_the_source)
 {
-    char* edit = (char*)calloc(strlen(__path_to_the_source) * 2,sizeof(char));
-    const char* __write = {"nano "};
+    char* edit = (char*)calloc(MAX_ALLOCATE,sizeof(char));
+    const char* _command_nano = {"nano "};
 
-    strncpy(edit,__write, strlen(__write));
+    strncpy(edit,_command_nano, strlen(_command_nano));
     strcat(edit, __path_to_the_source);
-    printf("%s\n", edit);
+    
     system(edit);
 }
