@@ -38,3 +38,5 @@ cls:
 
 run: $(OUT)
 	./$(OUT)
+
+

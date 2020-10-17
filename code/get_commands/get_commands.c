@@ -9,6 +9,7 @@
 
 const int rgb[3] = {1, 91, 107};
 const int  reset[3] = {0, 39, 49};
+const char* __restrict__ _file_name = {"01.c"};
 const char* menu = {"console c >>>"};
 
 void  push_includes()
@@ -16,13 +17,13 @@ void  push_includes()
     FILE *file_main;
     char* includes = (char*)calloc(500, sizeof(char));
     const char* __restrict__ __format[] = {
-                                            "#include <stdio.h>\n\n",
-                                            "void main()\n",
+                                            "#include <stdio.h>\n",
+                                            "int main(int argc, char* argv[])\n",
                                             "{\n"
                                         };
 
 
-    file_main = fopen("01.c","w+");
+    file_main = fopen(_file_name,"w+");
 
     if(file_main == NULL)
     {
@@ -41,7 +42,6 @@ void  push_includes()
         fgets(includes, 500, stdin);
 
         strcpy(includes, check_syntax(includes));
-        
         fprintf(file_main,"%s",includes);
     }
 
@@ -56,7 +56,7 @@ void push_main()
     FILE* file_body;
     char* body_main = (char*)calloc(500, sizeof(char));
 
-    file_body = fopen("01.c", "a+");
+    file_body = fopen(_file_name, "a+");
 
     if(file_body == NULL)
     {

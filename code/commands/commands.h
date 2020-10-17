@@ -1,13 +1,15 @@
 #ifndef COMMANDS_H
 #define COMMANDS_H
 
-void help();
+#define MAX_ALLOCATE 500
 
-void quit();
+void __help();
 
-void source(char* __file_code);
+void __quit();
 
-void manual(char* name_function);
+void __source(char* __file_code);
+
+void __manual(char* name_function);
 
 void __write(char* __path_to_the_source);
 

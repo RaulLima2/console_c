@@ -22,20 +22,20 @@ char* check_syntax(char* string)
 
     if(__analyser_syntax(string, "q"))
     {
-        string[strlen(string)] = '\0';
+        string[strlen(string) - 1] = '\0';
         node_operation_decision = search(tree_decision, strlen("q"));
         execute_node(node_operation_decision, string);
     }
     else if(__analyser_syntax(string, "help"))
     {
-        string[strlen(string)] = '\0';
+        string[strlen(string) -1] = '\0';
         node_operation_decision = search(tree_decision, strlen("help"));
         execute_node(node_operation_decision, string);
         return " \n";
     }
     else if(__analyser_syntax(string, "write"))
     {
-        string[strlen(string)] = '\0';
+        string[strlen(string) -1] = '\0';
         node_operation_decision = search(tree_decision, strlen("write"));
         execute_node(node_operation_decision, string);
         return " \n";
@@ -49,7 +49,7 @@ char* check_syntax(char* string)
     }
     else if(__analyser_syntax(string, "_source"))
     {
-        string[strlen(string)] = '\0';
+        string[strlen(string) -1] = '\0';
         node_operation_decision = search(tree_decision, strlen("_source"));
         execute_node(node_operation_decision, string);
         return " \n";
@@ -60,34 +60,26 @@ char* check_syntax(char* string)
 
 void command_help(char* name_function)
 {
-    help();
-}
-
-void command_source(char* local_file)
-{
-    bool check = false;
-    char* temp = (char*)calloc(100, sizeof(char));
-
-    check = strncmp("source", local_file, strlen("source"));
-
-    strncpy(temp, local_file + 7, strlen(local_file));
-
-    if(check)
-    {
-        source(temp);
-    }
+    __help();
 }
 
 void command_exit(char* exit_simbol)
 {
-    quit();
+    __quit();
+}
+
+void command_source(char* local_file)
+{
+    char* temp = (char*)calloc(strlen(local_file)*2, sizeof(char));
+    strncpy(temp, local_file + 7, strlen(local_file));
+    __source(temp);
 }
 
 void command_manual(char* manual_of_function)
 {
     char* temp = (char*)calloc(100, sizeof(char));
     strncat(temp, manual_of_function + 6, strlen(manual_of_function));
-    manual(temp);
+    __manual(temp);
 }
 
 void command_write(char* path_to_the_source)
