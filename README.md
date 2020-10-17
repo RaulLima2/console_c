@@ -16,7 +16,6 @@ layout do projeto desenvolvido no [Figma](https://www.figma.com/file/>QlWwjlH6sT
 REPL(read - eval - print - loop) para linguagem C
 que consiste em ler a entrada e intrepetar se é um
 palavra chave ou uma syntax da linguagem c.
-
 ___
 
 ## Licença
