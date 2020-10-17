@@ -5,7 +5,8 @@ Linguagem C.
 ___
 
 ## Demonstração
-[![asciicast](https://asciinema.org/a/365876)](https://asciinema.org/a/365876)
+<script src="https://asciinema.org/a/365876.js" id="https://asciinema.org/a/365876" async></script>
+[![asciicast](https://asciinema.org/a/365876.cast)](https://asciinema.org/a/365876)
 
 
 ---
