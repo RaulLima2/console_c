@@ -2,7 +2,6 @@
 
 ## Linguagem utilizada
 Linguagem C.
-
 ___
 ## Demonstração
 <link rel="alternate" type="aplication/x-asciicast" href="https://asciinema.org/a/365876">
